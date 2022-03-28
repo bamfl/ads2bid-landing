@@ -2826,7 +2826,7 @@ button.bg-dark:focus {
   }
 
   .d-md-block {
-    display: block !important;
+    display: inline-block !important;
   }
 
   .d-md-table {
@@ -7260,7 +7260,12 @@ header nav ul li button {
 }
 header .header-auth {
   position: relative;
-  float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-top: 20px;
 }
 
@@ -7328,23 +7333,28 @@ header .header-auth .header-auth__reg:hover {
     margin-left: 30px;
   }
 }
+@media (max-width: 992px) {
+  header .header-auth .header-auth__reg {
+    display: none;
+  }
+}
 
 @media (max-width: 992px) {
   header .header-auth a {
     display: none;
   }
 }
-header .header-auth .header-auth__reg span {
+header .header-auth .header-auth__reg a {
   background-color: #f3f4f6;
   padding: 8px 23px;
-  display: block;
+  display: inline-block;
   border-radius: 4px;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 @media (min-width: 992px) and (max-width: 1200px) {
-  header .header-auth .header-auth__reg span {
+  header .header-auth .header-auth__reg a {
     font-size: 14px;
   }
 }
@@ -10385,7 +10395,6 @@ section.mail .mail-img {
 
 section.shop {
   background-color: #f8fafe;
-  padding-top: 220px;
   padding-bottom: 110px;
 }
 @media (max-width: 1200px) {

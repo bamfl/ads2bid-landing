@@ -3,13 +3,43 @@ $(document).ready(function () {
   locale.addEventListener('click', () => {
     locale.classList.toggle('active');
   });
+  function changeLocale() {
+    const ruBtns = document.querySelectorAll('[data-locale="ru"]');
+    
+    ruBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.location.pathname.includes('/tearms-of-use_en.html')) {
+          window.location.href = 'tearms-of-use.html';
+        } else if (window.location.pathname.includes('/policy_en.html')) {
+          window.location.href = 'policy.html';
+        } else if (window.location.pathname.includes('/') || window.location.pathname.includes('/index_en.html')) {
+          window.location.href = 'index.html';
+        }
+      });
+    })
+
+    const enBtns = document.querySelectorAll('[data-locale="en"]');
+
+    enBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.location.pathname.includes('/tearms-of-use.html')) {
+          window.location.href = 'tearms-of-use_en.html';
+        } else if (window.location.pathname.includes('/policy.html')) {
+          window.location.href = 'policy_en.html';
+        } else if (window.location.pathname.includes('/') || window.location.pathname.includes('/index.html')) {
+          window.location.href = 'index_en.html';
+        }
+      });
+    })
+  }
+  changeLocale();
+
   const enterBtn = document.getElementById('header-auth-enter');
   const enterBtn2 = document.getElementById('header-auth-enter2');
   const enterBtns = [enterBtn, enterBtn2];
 
   enterBtns.forEach(enterBtn => {
     enterBtn.addEventListener('click', (e) => {
-      e.preventDefault();
       $('#popup').animate({ opacity: 'toggle', display: 'block' }, 100);
       $('.modal-tub__reg').removeClass('active');
       $('.modal-tub__vhod').addClass('active');
@@ -155,8 +185,7 @@ $(document).ready(function () {
     $('body').on('click', '[href*="#"]', function (e) {
       $('html,body')
         .stop()
-        .animate({ scrollTop: $(this.hash).offset().top + 220 }, 1e3),
-        e.preventDefault();
+        .animate({ scrollTop: $(this.hash).offset().top + 220 }, 1e3)
     }),
     window.innerWidth > 992 &&
       $('section.about .about-item').hover(function () {

@@ -2306,7 +2306,7 @@ button.bg-dark:focus {
     display: inline-block !important;
   }
   .d-md-block {
-    display: block !important;
+    display: inline-block !important;
   }
   .d-md-table {
     display: table !important;
@@ -6292,7 +6292,8 @@ header nav ul li .modal-tub__vhod {
 }
 header .header-auth {
   position: relative;
-  float: right;
+  display: flex;
+  align-items: center;
   padding-top: 20px;
 }
 @media (max-width: 992px) {
@@ -6349,16 +6350,19 @@ header .header-auth .header-auth__reg {
   @media (max-width: 1666px) {
     margin-left: 30px;
   }
+  @media (max-width:992px){
+    display: none;
+  }
 }
 @media (max-width: 992px) {
   header .header-auth a {
     display: none;
   }
 }
-header .header-auth .header-auth__reg span {
+header .header-auth .header-auth__reg a {
   background-color: #f3f4f6;
   padding: 8px 23px;
-  display: block;
+  display: inline-block;
   border-radius: 4px;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -9499,7 +9503,7 @@ section.mail .mail-img {
 }
 section.shop {
   background-color: #f8fafe;
-  padding-top: 220px;
+  // padding-top: 220px;
   padding-bottom: 110px;
   @media (max-width: 1200px) {
     padding-top: 120px;
