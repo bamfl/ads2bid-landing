@@ -155,7 +155,7 @@ $(document).ready(function () {
     $('body').on('click', '[href*="#"]', function (e) {
       $('html,body')
         .stop()
-        .animate({ scrollTop: $(this.hash).offset().top - 45 }, 1e3),
+        .animate({ scrollTop: $(this.hash).offset().top + 220 }, 1e3),
         e.preventDefault();
     }),
     window.innerWidth > 992 &&
