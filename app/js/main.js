@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "cj2q9izh",
+    alignment: 'right',
+    language_override: localStorage.getItem('language_override') || 'ru'
+  };
+  (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/cj2q9izh';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
   const locale = document.getElementById('locale');
   locale.addEventListener('click', () => {
     locale.classList.toggle('active');
@@ -8,6 +15,8 @@ $(document).ready(function () {
     
     ruBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        localStorage.setItem('language_override', 'ru');
+
         if (window.location.pathname.includes('/tearms-of-use_en.html')) {
           window.location.href = 'tearms-of-use.html';
         } else if (window.location.pathname.includes('/policy_en.html')) {
@@ -22,6 +31,8 @@ $(document).ready(function () {
 
     enBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        localStorage.setItem('language_override', 'en');
+
         if (window.location.pathname.includes('/tearms-of-use.html')) {
           window.location.href = 'tearms-of-use_en.html';
         } else if (window.location.pathname.includes('/policy.html')) {
