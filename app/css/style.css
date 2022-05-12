@@ -11959,7 +11959,7 @@ input {
   }
 }
 .locale {
-  display: inline-block !important;
+  display: none !important;
   margin-left: 25px;
   width: 36px;
   height: 27px;
