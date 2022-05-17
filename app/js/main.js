@@ -1,3 +1,29 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const urlQueryParams = document.location.search;
+  const items = document.querySelectorAll(`a`);
+  const locale = document.getElementById('locale');
+  const cabinetLinks = document.querySelectorAll('a[href^="https://cabinet."]');
+  const subdomain = window.location.hostname.split('.').length > 1 ? window.location.hostname.split('.')[0] : null;
+
+  if (subdomain === 'eu') {
+    locale.remove();
+    for (let i = 0; i < cabinetLinks.length; i++) {
+      const link = cabinetLinks[i];
+      link.host = 'eu-cab.ads2.bid';
+    }
+  } else {
+    locale.style.cssText = 'display: inline-block !important';
+  }
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+
+    if (!item.href.includes(urlQueryParams) && item.href) {
+      item.href = item.href + urlQueryParams;
+    }
+  }
+})
+
 $(document).ready(function () {
   window.intercomSettings = {
     api_base: "https://api-iam.intercom.io",
@@ -7,33 +33,14 @@ $(document).ready(function () {
   };
   (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/cj2q9izh';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
   const locale = document.getElementById('locale');
-  const subdomain = window.location.hostname.split('.').length > 1 ? window.location.hostname.split('.')[0] : null;
-  if (subdomain === 'eu' && !localStorage.getItem('subdomain')) {
-    localStorage.setItem('language_override', 'en');
-    localStorage.setItem('subdomain', 'eu');
+  const urlQueryParams = document.location.search;
 
-    if (window.location.pathname.includes('/tearms-of-use_en.html')) {
-      window.location.href = 'tearms-of-use_en.html';
-    } else if (window.location.pathname.includes('/policy_en.html')) {
-      window.location.href = 'policy_en.html';
-    } else if (window.location.pathname.includes('/') || window.location.pathname.includes('/index.html')) {
-      window.location.href = 'index_en.html';
-    }
-  } else if (localStorage.getItem('subdomain')) {
-    locale.remove();
-    localStorage.removeItem('subdomain');
-    const cabinetLinks = document.querySelectorAll('a[href^="https://cabinet."]');
-    for (let i = 0; i < cabinetLinks.length; i++) {
-      const link = cabinetLinks[i];
-      link.host = 'eu-cab.ads2.bid';
-    }
-  } else {
-    localStorage.removeItem('subdomain');
-    locale.style.cssText = 'display: inline-block !important';
+  if (locale) {
+    locale.addEventListener('click', () => {
+      locale.classList.toggle('active');
+    });
   }
-  locale.addEventListener('click', () => {
-    locale.classList.toggle('active');
-  });
+
   function changeLocale() {
     const ruBtns = document.querySelectorAll('[data-locale="ru"]');
     
@@ -42,11 +49,11 @@ $(document).ready(function () {
         localStorage.setItem('language_override', 'ru');
 
         if (window.location.pathname.includes('/tearms-of-use_en.html')) {
-          window.location.href = 'tearms-of-use.html';
+          window.location.href = 'tearms-of-use.html'+ urlQueryParams;
         } else if (window.location.pathname.includes('/policy_en.html')) {
-          window.location.href = 'policy.html';
+          window.location.href = 'policy.html'+ urlQueryParams;
         } else if (window.location.pathname.includes('/index_en.html')) {
-          window.location.href = 'index.html';
+          window.location.href = 'index.html'+ urlQueryParams;
         }
       });
     })
@@ -58,11 +65,11 @@ $(document).ready(function () {
         localStorage.setItem('language_override', 'en');
 
         if (window.location.pathname.includes('/tearms-of-use.html')) {
-          window.location.href = 'tearms-of-use_en.html';
+          window.location.href = 'tearms-of-use_en.html'+ urlQueryParams;
         } else if (window.location.pathname.includes('/policy.html')) {
-          window.location.href = 'policy_en.html';
+          window.location.href = 'policy_en.html'+ urlQueryParams;
         } else if (window.location.pathname.includes('/') || window.location.pathname.includes('/index.html')) {
-          window.location.href = 'index_en.html';
+          window.location.href = 'index_en.html' + urlQueryParams;
         }
       });
     })

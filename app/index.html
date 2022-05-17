@@ -6,6 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ads2.bid - Рекламная сеть для монетизации сайтов</title>
+	<script>
+    const subdomain = window.location.hostname.split('.').length > 1 ? window.location.hostname.split('.')[0] : null;
+    const urlQueryParams = document.location.search;
+
+    if (subdomain === 'eu' && !localStorage.getItem('subdomain')) {
+      localStorage.setItem('language_override', 'en');
+
+      if (window.location.pathname.includes('/tearms-of-use_en.html')) {
+        window.location.href = 'tearms-of-use_en.html' + urlQueryParams;
+      } else if (window.location.pathname.includes('/policy_en.html')) {
+        window.location.href = 'policy_en.html' + urlQueryParams;
+      } else if (window.location.pathname.includes('/') || window.location.pathname.includes('/index.html')) {
+        window.location.href = 'index_en.html' + urlQueryParams;
+      }
+    }
+  </script>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300&display=swap"
 		rel="stylesheet">
@@ -856,7 +872,7 @@
 							Широкий выбор высокодоходных шаблонов
 						</p>
 						<p class="about__text">
-							НУ нас в системе доступно более 20 рекламных шаблонов, которые отобраны по CPM за счет многочисленных
+							У нас в системе доступно более 20 рекламных шаблонов, которые отобраны по CPM за счет многочисленных
 							внутренних a/b тестов
 						</p>
 					</div>
